@@ -8,11 +8,10 @@ export default class RegexMatch extends HTMLElement {
 
   static get template() {
     return `
-      <span id="target">
+      <div>
         <slot></slot>
-      </span>
-      <result-symbol></result-symbol>
-      <span id="matched"></span>
+      </div>
+      <div id="matched"></div>
     `;
   }
 
@@ -26,6 +25,7 @@ export default class RegexMatch extends HTMLElement {
     }).innerHTML = RegexMatch.template;
 
     this.addEventListener('input', this.update);
+    this.matched = this.shadowRoot.querySelector('#matched');
 
     this.update();
   }
@@ -35,15 +35,12 @@ export default class RegexMatch extends HTMLElement {
   }
 
   update() {
-    const matched = this.shadowRoot.querySelector('#matched');
-    const symbol = this.shadowRoot.querySelector('result-symbol');
-
-    matched.textContent = this.matched.length ? `「${this.matched.join('、')}」` : '';
-    symbol.setAttribute('value', this.matched.length);
-    symbol.setAttribute('type', 'number');
+    const pattern = this.getAttribute('pattern') || '';
+    const isNotMatched = !pattern.length || !this.result.length;
+    this.matched.textContent = isNotMatched ? '❌ マッチしませんでした' : this.result.map(text => `✅ ${text}`).join('、');
   }
 
-  get matched() {
+  get result() {
     const pattern = this.getAttribute('pattern') || '';
     const flags = this.getAttribute('flags') || '';
     const regexp = new RegExp(pattern, flags);

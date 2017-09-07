@@ -3,30 +3,32 @@
   <head>
     <meta charset="utf-8">
     <title>Regex Test</title>
+    <link rel="stylesheet" href="./app.css">
   </head>
   <body>
-    <section>
-      <regex-input></regex-input>
-    </section>
-    <section>
-      <ul>
-        <li>
+    <main>
+      <section>
+        <regex-input></regex-input>
+      </section>
+      <hr>
+      <section>
+        <div>
           <regex-match contenteditable>正規表現でマッチするか確かめたい文字列（編集可能）</regex-match>
-        </li>
-        <li>
+        </div>
+        <div>
           <regex-match contenteditable>2017年10月01日</regex-match>
-        </li>
-        <li>
+        </div>
+        <div>
           <regex-match contenteditable>This is a pen. Is this a pen? What is this?</regex-match>
-        </li>
-        <li>
+        </div>
+        <div>
           <regex-match contenteditable>和風懐石、洋風懐石、洋風御膳、中華懐石、中華御膳</regex-match>
-        </li>
-        <li>
+        </div>
+        <div>
           <regex-match contenteditable>藤原道長は、藤原道隆、藤原道兼など藤原氏と呼ばれる一族の中でも、とくに有名な人物です。</regex-match>
-        </li>
-      </ul>
-    </section>
+        </div>
+      </section>
+    </main>
     <script type="module" src="./app.js"></script>
   </body>
 </html>
